@@ -20,9 +20,11 @@ EXTRA_TAG=$(echo ${2:-''} | tr '[:upper:]' '[:lower:]')
 case $1 in
   build)
     set -e
-    mkdir -p ./docker/bin
-    cp -r ~/.local docker/bin/
+    mkdir -p ./docker/bin/.local
+    cp -r ~/.local/bin docker/bin/.local/
     cp -r ~/.etlas docker/bin/
+    rm -rf ./docker/.etlas/logs/*
+    rm -rf ./docker/.etlas/packages/etlas.typelead.com/packages/*
 
     echo "Building an image: $HASH_TAG"
     docker build -t $HASH_TAG ./docker
