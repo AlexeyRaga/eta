@@ -25,7 +25,7 @@ dependencies:
   override:
     - ./install.sh
     - ./docker/circleci-build-container.sh build
-    - stack build --test --no-run-tests
+    - stack build --test --no-run-tests eta
 
 test:
   override:
