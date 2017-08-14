@@ -50,7 +50,7 @@ jobs:
             - ./etlas/etlas-cabal/.stack-work
 
       - save_cache:
-          key: eta-bin
+          key: eta-bin-{{ checksum "stack.yaml" }}-{{ checksum "eta.cabal" }}
           paths:
             - ~/.eta
             - ~/.etlas
@@ -68,7 +68,7 @@ jobs:
           at: .
 
       - restore_cache:
-          key: eta-bin
+          key: eta-bin-{{ checksum "stack.yaml" }}-{{ checksum "eta.cabal" }}
 
       - run: stack setup
       - run: stack build --test --no-run-tests eta
